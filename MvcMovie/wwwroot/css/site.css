@@ -3,7 +3,17 @@ for details on configuring this project to bundle and minify static web assets. 
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-image: url("http://www.myfreephotoshop.com/wp-content/uploads/2013/09/9543.jpg")
 }
+
+header {
+    color: crimson;
+    background-color: none;
+    align-content: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+ 
+}
+
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
@@ -12,22 +22,43 @@ body {
     padding-right: 15px;
 }
 
-/* Carousel */
-.carousel-caption p {
-    font-size: 20px;
-    line-height: 1.4;
+input{
+    color: black;
 }
 
-/* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"] {
-    width: 100%;
+p{
+    color: white;
 }
 
-/* QR code generator */
-#qrCode {
-    margin: 15px;
+table{
+    color: white;
 }
 
+h2{
+    color: white;
+}
+
+h3{
+    color: white;
+}
+
+h4{
+    color: white;
+}
+
+dt{
+    color: white;
+}
+
+dd{
+    color: white;
+}
+div{
+    color: white;
+}
+select{
+    color: black;
+}
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */
