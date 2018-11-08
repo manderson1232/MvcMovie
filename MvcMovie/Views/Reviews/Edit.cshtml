@@ -19,8 +19,9 @@
                 <span asp-validation-for="Reviewer" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="UserReview" class="control-label"></label>
-                <input asp-for="UserReview" class="form-control" />
+                <label asp-for="UserReview" class="control-label">Comment</label>
+                <textarea asp-for="UserReview" class="form-control" id="Comment" name="UserReview"></textarea>
+                @*<input asp-for="UserReview" class="form-control" /> not needed anymore*@
                 <span asp-validation-for="UserReview" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -35,6 +36,7 @@
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
+                <a class="btn btn-outline-info" href="/Movies/Details/@Html.DisplayFor(model => model.MovieID)">Back</a>
             </div>
         </form>
     </div>

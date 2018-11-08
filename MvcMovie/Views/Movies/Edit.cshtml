@@ -35,17 +35,22 @@
             </div>
             <div class="form-group">
                 <label asp-for="Rating" class="control-label"></label>
-                <input asp-for="Rating" class="form-control" />
-                <span asp-validation-for="Rating" class="text-danger"></span>
+                <div class="col-md-3">
+                    <select asp-for="Rating" class="form-control" asp-items="@(new SelectList(Enum.GetValues(typeof(Ratings))))">
+                        <option disabled selected>Select Rating</option>
+                    </select>
+                    @*<input asp-for="Rating" class="form-control" />*@ @*probably not needed?*@
+                    <span asp-validation-for="Rating" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-            <input type="hidden" asp-for="PosterURL" id="PosterURL" name="PosterURL" />
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </form>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+                <input type="hidden" asp-for="PosterURL" id="PosterURL" name="PosterURL" />
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+</form>
     </div>
 </div>
 

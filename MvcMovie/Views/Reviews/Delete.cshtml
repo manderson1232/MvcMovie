@@ -36,10 +36,18 @@
             @Html.DisplayFor(model => model.MovieTitle)
         </dd>
     </dl>
-    
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="ID" />
         <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-action="Index">Back to List</a>
+        <a class="btn btn-outline-info" href="/Movies/Details/@Html.DisplayFor(model => model.MovieID)">Back</a>
+        @*<a asp-action="Index">Back to List</a>*@
     </form>
 </div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

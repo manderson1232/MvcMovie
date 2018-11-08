@@ -18,11 +18,37 @@ namespace MvcMovie.Controllers
             _context = context;
         }
 
+
         // GET: Reviews
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortby, string direction)
         {
-            return View(await _context.Review.ToListAsync());
+            if (sortby == null && direction == null)
+            {
+                return View(await _context.Review.ToListAsync());
+            }
+            var reviews = await _context.Review.OrderBy(r => r.Reviewer).ToListAsync();
+            if (sortby == "reviewer" && direction == "desc")
+            { //descending sort by reviewer
+                reviews = await _context.Review.OrderByDescending(r => r.Reviewer).ToListAsync();
+            }
+            else if (sortby == "movie" && direction == "asc")
+            { //ascending sort by movie title
+                reviews = await _context.Review.OrderBy(r => r.MovieTitle).ToListAsync();
+            }
+            else if (sortby == "movie" && direction == "desc")
+            { //descending sort by movie title
+                reviews = await _context.Review.OrderByDescending(r => r.MovieTitle).ToListAsync();
+            }
+            else
+            { //ascending sort by reviewer
+                reviews = await _context.Review.OrderBy(r => r.Reviewer).ToListAsync();
+            }
+            return View(reviews);
         }
+        //public async Task<IActionResult> Index()
+        //{
+        //    return View(await _context.Review.ToListAsync());
+        //}
 
         // GET: Reviews/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -43,8 +69,15 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Reviews/Create
-        public IActionResult Create()
+        //public IActionResult Create()
+        //{
+        //    return View();
+        //}
+        public IActionResult Create(int? id, string movieTitle)
         {
+            if (id == null) { id = 0; }
+            ViewData["thisMovieID"] = id;
+            ViewData["thisMovieTitle"] = movieTitle;
             return View();
         }
 
@@ -59,8 +92,10 @@ namespace MvcMovie.Controllers
             {
                 _context.Add(review);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction($"Details{"/" + review.MovieID}", "Movies");
             }
+            ViewData["thisMovieID"] = review.MovieID;
+            ViewData["thisMovieTitle"] = review.MovieTitle;
             return View(review);
         }
 
@@ -110,8 +145,10 @@ namespace MvcMovie.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction($"Details{"/" + review.MovieID}", "Movies");
             }
+            ViewData["thisMovieID"] = review.MovieID;
+            ViewData["thisMovieTitle"] = review.MovieTitle;
             return View(review);
         }
 
@@ -141,7 +178,7 @@ namespace MvcMovie.Controllers
             var review = await _context.Review.FindAsync(id);
             _context.Review.Remove(review);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction($"Details{"/" + review.MovieID}", "Movies");
         }
 
         private bool ReviewExists(int id)

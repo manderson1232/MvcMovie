@@ -14,7 +14,7 @@ namespace MvcMovie.Controllers
 {
     public class MoviesController : Controller
     {
-        private static string apiKey = "28cfa0a4";
+        //private static string apiKey = "28cfa0a4";
         private readonly MvcMovieContext _context;
 
         public MoviesController(MvcMovieContext context)

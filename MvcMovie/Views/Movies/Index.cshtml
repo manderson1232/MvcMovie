@@ -1,26 +1,31 @@
 ﻿
 @model MvcMovie.Models.MovieGenreViewModel
-
-
 @{
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>My Movie List</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-info">Create New</a>
 </p>
 
 <form asp-controller="Movies" asp-action="Index" method="get">
-    <p>
-        <select asp-for="MovieGenre" asp-items="Model.Genres">
+    <div class="form-group col-md-3">
+        <select asp-for="MovieGenre" asp-items="Model.Genres" class="form-control">
             <option value="">All</option>
         </select>
 
-        Title: <input type="text" name="SearchString">
-        <input type="submit" value="Filter" />
-    </p>
+        @*changed*@
+        @*Title: <input type="text" name="SearchString">
+        <input type="submit" value="Filter" />*@
+    </div>
+    <div class="form-inline col-md-4">
+        <label class="control-label">Title:</label>
+        <input type="text" class="form-control" name="SearchString" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Filter</button>
 </form>
 
 <table class="table">
