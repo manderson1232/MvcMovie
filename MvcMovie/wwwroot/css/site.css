@@ -6,6 +6,10 @@ body {
     background-image: url("http://www.myfreephotoshop.com/wp-content/uploads/2013/09/9543.jpg")
 }
 
+.imdb {
+    padding-bottom: 10px;
+}
+
 header {
     color: crimson;
     background-color: none;

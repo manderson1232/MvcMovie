@@ -54,7 +54,7 @@ namespace MvcMovie.Controllers
 
             var movieGenreVM = new MovieGenreViewModel();
             movieGenreVM.Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
-            movieGenreVM.Movies = await movies.ToListAsync();
+            //movieGenreVM.Movies = await movies.ToListAsync();
             //movieGenreVM.SearchString = searchString;
 
             return View(movieGenreVM);
@@ -118,10 +118,13 @@ namespace MvcMovie.Controllers
                 string url = "http://www.omdbapi.com/?apikey=" + "28cfa0a4" + "&t=" + movieName;
                 var response = await client.GetAsync(url);
                 var data = await response.Content.ReadAsStringAsync();
+
                 var json = JsonConvert.DeserializeObject(data).ToString();
                 dynamic omdbMovie = JObject.Parse(json);
+
                 ViewData["movie"] = json;
                 ViewData["omdbMovie"] = omdbMovie;
+
                 Movie movie = new Movie();
                 try
                 {
